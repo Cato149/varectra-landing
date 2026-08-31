@@ -1187,10 +1187,6 @@ body.leg-active .global-terminal {
     gap: 0.4rem;
   }
 
-  .virtual-terminal__pager-label {
-    display: none;
-  }
-
   .virtual-terminal .tui-box__label[data-role='meta'] {
     display: none;
   }

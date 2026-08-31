@@ -201,10 +201,10 @@
     <svelte:fragment slot="bar">
       <div class="virtual-terminal__status">
         <TuiButton on:click={() => moveFile(-1)}>
-          <span class="key">[</span><span class="virtual-terminal__pager-label">{m.pager.previousFile}</span>
+          <span class="key">[</span><span class="virtual-terminal__pager-label">{compactChrome ? ` ${m.pager.previous}` : m.pager.previousFile}</span>
         </TuiButton>
         <TuiButton align="end" on:click={() => moveFile(1)}>
-          <span class="virtual-terminal__pager-label">{m.pager.nextFile}</span><span class="key">]</span>
+          <span class="virtual-terminal__pager-label">{compactChrome ? `${m.pager.forward} ` : m.pager.nextFile}</span><span class="key">]</span>
         </TuiButton>
       </div>
     </svelte:fragment>

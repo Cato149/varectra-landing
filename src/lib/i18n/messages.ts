@@ -20,6 +20,7 @@ export interface MessageCatalog {
     nextFile: string;
     previous: string;
     next: string;
+    forward: string;
     close: string;
     download: string;
   };
@@ -121,6 +122,7 @@ const en: MessageCatalog = {
     nextFile: ' next file',
     previous: 'Previous',
     next: 'Next',
+    forward: 'Forward',
     close: 'Close',
     download: 'Download',
   },
@@ -234,6 +236,7 @@ const ru: MessageCatalog = {
     nextFile: ' след. файл',
     previous: 'Назад',
     next: 'Далее',
+    forward: 'Вперёд',
     close: 'Закрыть',
     download: 'Скачать',
   },
