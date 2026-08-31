@@ -15,15 +15,19 @@ const createContext = (): TerminalContext => ({
 
 describe('terminal parser and registry', () => {
   it('parses canonical commands and arguments', () => {
+    expect(parseCommand('themes nordic')).toEqual({
+      command: 'themes',
+      args: ['nordic'],
+    });
     expect(parseCommand('/themes nordic')).toEqual({
-      command: '/themes',
+      command: 'themes',
       args: ['nordic'],
     });
   });
 
   it('normalizes cd navigation aliases', () => {
     expect(parseCommand('cd whoami')).toEqual({
-      command: '/whoami',
+      command: 'whoami',
       args: [],
     });
   });
@@ -40,14 +44,15 @@ describe('terminal parser and registry', () => {
 
   it('prints help and reports unknown commands', async () => {
     const context = createContext();
-    expect(await executeCommand('/help', context)).toBe(true);
-    expect(context.output).toHaveBeenCalledWith(expect.stringContaining('/whoami'));
+    expect(await executeCommand('help', context)).toBe(true);
+    expect(context.output).toHaveBeenCalledWith(expect.stringContaining('about'));
+    expect(context.output).toHaveBeenCalledWith(expect.not.stringContaining('/help'));
 
     expect(await executeCommand('/does-not-exist', context)).toBe(false);
     expect(context.output).toHaveBeenLastCalledWith(expect.stringContaining('command not found'));
   });
 
-  it('launches the /leg animation', async () => {
+  it('launches the leg animation', async () => {
     const context = createContext();
     expect(await executeCommand('/leg', context)).toBe(true);
     expect(context.launchLeg).toHaveBeenCalledOnce();
@@ -68,14 +73,13 @@ describe('terminal parser and registry', () => {
     expect(context.clear).not.toHaveBeenCalled();
   });
 
-  it('hides /leg from prompt suggestions and keeps it in /help', async () => {
-    expect(getCommandSuggestions('/').some((command) => command.name === '/leg')).toBe(false);
-    expect(getCommandSuggestions('/leg').some((command) => command.name === '/leg')).toBe(false);
-    expect(getCommandSuggestions('').some((command) => command.name === '/leg')).toBe(false);
+  it('hides leg from prompt suggestions and keeps it in help', async () => {
+    expect(getCommandSuggestions('').some((command) => command.name === 'leg')).toBe(false);
+    expect(getCommandSuggestions('leg').some((command) => command.name === 'leg')).toBe(false);
 
     const context = createContext();
-    expect(await executeCommand('/help', context)).toBe(true);
-    expect(context.output).toHaveBeenCalledWith(expect.stringContaining('/leg'));
+    expect(await executeCommand('help', context)).toBe(true);
+    expect(context.output).toHaveBeenCalledWith(expect.stringContaining('leg'));
     expect(context.output).toHaveBeenCalledWith(expect.not.stringContaining('clear'));
   });
 
@@ -85,7 +89,7 @@ describe('terminal parser and registry', () => {
     expect(context.setLocale).toHaveBeenCalledWith('ru');
     expect(await executeCommand('locale by', context)).toBe(true);
     expect(context.setLocale).toHaveBeenCalledWith('by');
-    expect(await executeCommand('/locale', context)).toBe(true);
+    expect(await executeCommand('locale', context)).toBe(true);
     expect(context.output).toHaveBeenCalledWith(expect.stringContaining('ENG'));
   });
 });

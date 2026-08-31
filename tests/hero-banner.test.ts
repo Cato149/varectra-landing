@@ -7,9 +7,9 @@ import {
 } from '../src/lib/hero/banner';
 
 describe('varectra banner', () => {
-  it('keeps five equal-width rows', () => {
-    expect(varectraBannerSource).toHaveLength(5);
-    expect(varectraBannerLines).toHaveLength(5);
+  it('keeps eight equal-width rows', () => {
+    expect(varectraBannerSource).toHaveLength(8);
+    expect(varectraBannerLines).toHaveLength(8);
     const width = varectraBannerLines[0]?.length ?? 0;
     expect(width).toBeGreaterThan(40);
     expect(new Set(varectraBannerLines.map((line) => line.length))).toEqual(new Set([width]));

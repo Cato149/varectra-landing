@@ -2,9 +2,9 @@ import { isThemeName, themeLabels, themes } from '../../themes';
 import type { TerminalCommand } from '../types';
 
 export const themesCommand: TerminalCommand = {
-  name: '/themes',
+  name: 'themes',
   description: 'List or activate an interface theme',
-  usage: '/themes [default|dracula|gruvbox|github|nordic]',
+  usage: 'themes [default|dracula|gruvbox|github|nordic]',
   execute: (context, args) => {
     const requested = args[0]?.toLowerCase();
     if (!requested) {

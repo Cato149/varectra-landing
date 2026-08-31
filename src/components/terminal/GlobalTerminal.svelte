@@ -141,6 +141,7 @@
 
   const hideSuggestions = () => {
     focused = false;
+    output = '';
   };
 
   const isPromptInput = (target: EventTarget | null) =>
@@ -183,7 +184,6 @@
     const onBootComplete = () => ready = true;
     const openPrompt = () => {
       inputElement.focus();
-      if (!input.trim()) input = '/';
       showSuggestions();
     };
     const onWindowKeydown = (event: KeyboardEvent) => {
@@ -257,17 +257,10 @@
 
 <aside class="global-terminal" data-ready={ready} aria-label="Global command terminal">
   <div class="global-terminal__frame">
-  {#if focused}
+  {#if focused && output}
     <div class="terminal-overlay" bind:this={overlayElement}>
       <TuiBox title={copy.terminal.cmd} meta="help">
-        {#if output}
-          <pre class="terminal-output" aria-live="polite">{output}</pre>
-        {/if}
-        <ul class="terminal-suggestions" aria-label={copy.terminal.suggestions}>
-          {#each suggestions as command}
-            <li><strong>{command.name}</strong> — {copy.commands[command.name] ?? command.description}</li>
-          {/each}
-        </ul>
+        <pre class="terminal-output" aria-live="polite">{output}</pre>
       </TuiBox>
     </div>
   {/if}

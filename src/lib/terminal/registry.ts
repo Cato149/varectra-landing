@@ -7,43 +7,43 @@ import type { TerminalCommand, TerminalContext } from './types';
 
 const navigationCommands: TerminalCommand[] = [
   createNavigationCommand({
-    name: '/about',
-    section: 'about',
+    name: 'about',
+    section: 'whoami',
     aliases: ['whoami', 'about'],
     description: 'Open identity records',
   }),
   createNavigationCommand({
-    name: '/tech-docs',
+    name: 'tech-docs',
     section: 'tech-docs',
     aliases: ['tech-docs', 'specs'],
     description: 'Inspect Varectra technical specifications',
   }),
   createNavigationCommand({
-    name: '/exec',
+    name: 'exec',
     section: 'exec',
     aliases: ['exec', 'work'],
     description: 'Browse projects and services',
   }),
   createNavigationCommand({
-    name: '/router',
+    name: 'router',
     section: 'router',
     aliases: ['router', 'events'],
     description: 'Read event routing logs',
   }),
   createNavigationCommand({
-    name: '/static',
+    name: 'static',
     section: 'static',
     aliases: ['static', 'gallery'],
     description: 'Browse the media filesystem',
   }),
   createNavigationCommand({
-    name: '/protocols',
+    name: 'protocols',
     section: 'protocols',
     aliases: ['protocols', 'socials'],
     description: 'List communication protocols',
   }),
   createNavigationCommand({
-    name: '/license',
+    name: 'license',
     section: 'license',
     aliases: ['license', 'credits', 'author', '/LICENSE', 'LICENSE'],
     description: 'Read author license and credits',
@@ -52,8 +52,8 @@ const navigationCommands: TerminalCommand[] = [
 
 export const commandRegistry: TerminalCommand[] = [
   {
-    name: '/help',
-    aliases: ['help'],
+    name: 'help',
+    aliases: [],
     description: 'Show available commands',
     execute: (context) => {
       const copy = getMessages(context.locale);
@@ -66,12 +66,12 @@ export const commandRegistry: TerminalCommand[] = [
   themesCommand,
   localeCommand,
   {
-    name: '/leg',
-    aliases: ['leg'],
+    name: 'leg',
+    aliases: [],
     description: 'Extend the local canid beyond its specified length',
     hiddenFromSuggestions: true,
     execute: (context) => {
-      context.output('executing /leg …');
+      context.output('executing leg …');
       context.launchLeg();
     },
   },
@@ -104,7 +104,7 @@ export const executeCommand = async (
 };
 
 export const getCommandSuggestions = (input: string): TerminalCommand[] => {
-  const query = input.trim().toLowerCase();
+  const query = input.trim().toLowerCase().replace(/^\/+/, '');
   const listed = commandRegistry.filter((command) => !command.hiddenFromSuggestions);
   if (!query) return listed;
   return listed.filter((command) =>

@@ -3,10 +3,10 @@ import { getMessages } from '../../i18n/messages';
 import type { TerminalCommand } from '../types';
 
 export const localeCommand: TerminalCommand = {
-  name: '/locale',
-  aliases: ['locale'],
+  name: 'locale',
+  aliases: [],
   description: 'List or activate an interface locale',
-  usage: '/locale [ru|en|by]',
+  usage: 'locale [ru|en|by]',
   execute: (context, args) => {
     const copy = getMessages(context.locale);
     const requested = args[0];

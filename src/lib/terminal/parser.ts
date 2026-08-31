@@ -6,16 +6,16 @@ export const parseCommand = (input: string): ParsedCommand | null => {
 
   const [rawCommand = '', ...rawArgs] = normalized.split(' ');
 
+  const stripSlash = (value: string) => value.replace(/^\/+/, '').toLowerCase();
+
   if (rawCommand === 'cd' && rawArgs[0]) {
     return {
-      command: `/${rawArgs[0].replace(/^\/+/, '')}`,
+      command: stripSlash(rawArgs[0]),
       args: rawArgs.slice(1),
     };
   }
 
-  const command = rawCommand.startsWith('/')
-    ? `/${rawCommand.slice(1).toLowerCase()}`
-    : rawCommand.toLowerCase();
+  const command = stripSlash(rawCommand);
 
   return { command, args: rawArgs };
 };

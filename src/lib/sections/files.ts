@@ -120,9 +120,9 @@ export const promptPlaceholder = (
 ): string => {
   if (compact) {
     const hint = getSectionFile(id).hint;
-    return hint ?? '/help';
+    return hint ?? 'help';
   }
-  return desktopHint || '/help';
+  return desktopHint || 'help';
 };
 
 export const shiftSectionId = (id: string, direction: 1 | -1): string => {

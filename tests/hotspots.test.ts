@@ -26,7 +26,7 @@ describe('tech-docs hotspot gestures', () => {
     expect(promptPlaceholder('tech-docs', true)).toBe(
       'tip: one tap = highlight, two = info',
     );
-    expect(promptPlaceholder('home', true)).toBe('/help');
+    expect(promptPlaceholder('home', true)).toBe('help');
   });
 
   it('shows the arrow tip on desktop for pages that support it', () => {
@@ -35,6 +35,6 @@ describe('tech-docs hotspot gestures', () => {
     expect(desktopSectionHint('exec', hints)).toBe(hints.exec);
     expect(desktopSectionHint('home', hints)).toBeUndefined();
     expect(promptPlaceholder('tech-docs', false, hints.arrows)).toBe(hints.arrows);
-    expect(promptPlaceholder('home', false)).toBe('/help');
+    expect(promptPlaceholder('home', false)).toBe('help');
   });
 });

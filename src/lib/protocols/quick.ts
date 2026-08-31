@@ -1,5 +1,5 @@
-export type QuickContactId = 'telegram' | 'email' | 'discord';
-export type QuickContactKey = 't' | 'm' | 'd';
+export type QuickContactId = 'telegram' | 'discord';
+export type QuickContactKey = 't' | 'd';
 
 export interface QuickContact {
   id: QuickContactId;
@@ -7,11 +7,10 @@ export interface QuickContact {
   url: string;
 }
 
-const QUICK_CONTACT_ORDER: readonly QuickContactId[] = ['telegram', 'email', 'discord'];
+const QUICK_CONTACT_ORDER: readonly QuickContactId[] = ['telegram', 'discord'];
 
 const QUICK_CONTACT_KEYS: Record<QuickContactId, QuickContactKey> = {
   telegram: 't',
-  email: 'm',
   discord: 'd',
 };
 
@@ -23,8 +22,6 @@ const platformMatches = (platform: string, id: QuickContactId): boolean => {
   switch (id) {
     case 'telegram':
       return key === 'telegram';
-    case 'email':
-      return key === 'email' || key === 'mail';
     case 'discord':
       return key === 'discord';
     default: {
@@ -34,7 +31,7 @@ const platformMatches = (platform: string, id: QuickContactId): boolean => {
   }
 };
 
-/** Home-row contacts in T / M / D order, resolved from CMS protocol entries. */
+/** Home-row contacts in T / D order, resolved from CMS protocol entries. */
 export const pickQuickContacts = (
   protocols: Array<{ platform: string; url: string }>,
 ): QuickContact[] =>
@@ -45,13 +42,11 @@ export const pickQuickContacts = (
 
 export const quickContactLabel = (
   id: QuickContactId,
-  labels: { telegram: string; mail: string; discord: string },
+  labels: { telegram: string; discord: string },
 ): string => {
   switch (id) {
     case 'telegram':
       return labels.telegram;
-    case 'email':
-      return labels.mail;
     case 'discord':
       return labels.discord;
     default: {

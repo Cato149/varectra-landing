@@ -30,7 +30,7 @@ describe('protocol icons', () => {
 });
 
 describe('quick contacts', () => {
-  it('picks Telegram, mail, and Discord in T / M / D order', () => {
+  it('picks Telegram and Discord in T / D order and ignores mail', () => {
     expect(
       pickQuickContacts([
         { platform: 'Discord', url: 'https://discord.com/users/varectra' },
@@ -40,7 +40,6 @@ describe('quick contacts', () => {
       ]),
     ).toEqual([
       { id: 'telegram', key: 't', url: 'https://t.me/varectra' },
-      { id: 'email', key: 'm', url: 'mailto:varectra@example.com' },
       { id: 'discord', key: 'd', url: 'https://discord.com/users/varectra' },
     ]);
   });
@@ -51,10 +50,9 @@ describe('quick contacts', () => {
     ]);
   });
 
-  it('maps localized labels for the three home chips', () => {
-    const labels = { telegram: 'Telegram', mail: 'Почта', discord: 'Discord' };
+  it('maps localized labels for the home chips', () => {
+    const labels = { telegram: 'Telegram', discord: 'Discord' };
     expect(quickContactLabel('telegram', labels)).toBe('Telegram');
-    expect(quickContactLabel('email', labels)).toBe('Почта');
     expect(quickContactLabel('discord', labels)).toBe('Discord');
   });
 });

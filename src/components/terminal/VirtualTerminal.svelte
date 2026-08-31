@@ -117,7 +117,7 @@
         return;
       }
 
-      // T / M / D open home contacts only; D stays download while a dialog is open.
+      // T / D open home contacts only; D stays download while a dialog is open.
       const layer = getKeyboardLayer(context);
       if (currentId !== 'home' || layer === 'input' || layer === 'dialog') return;
       const url = quickByKey[event.key.toLowerCase()];
@@ -165,7 +165,6 @@
                   ><span class="key">[{contact.key.toUpperCase()}]</span
                     >{' '}{quickContactLabel(contact.id, {
                       telegram: m.home.quickTelegram,
-                      mail: m.home.quickMail,
                       discord: m.home.quickDiscord,
                     })}</a>
                 {/each}
@@ -177,7 +176,7 @@
           </div>
           <p class="system-lead home-line" class:is-on={homeLines >= 3}>
             {m.home.openHintBefore}<span class="key">[</span> /
-            <span class="key">]</span>{m.home.openHintMid}<span class="key">/help</span>.
+            <span class="key">]</span>{m.home.openHintMid}<span class="key">help</span>.
           </p>
           <p class="system-kicker home-line" class:is-on={homeLines >= 4}>[ EOF ] {name} / {pack.location}</p>
         </div>
