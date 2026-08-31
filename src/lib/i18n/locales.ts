@@ -90,9 +90,12 @@ export const htmlLang = (locale: LocaleId): string => {
   }
 };
 
-export const persistLocale = (locale: LocaleId, storage: Storage): void => {
+export const persistLocale = (
+  locale: LocaleId,
+  storage: Pick<Storage, 'setItem'>,
+): void => {
   storage.setItem(LOCALE_STORAGE_KEY, locale);
 };
 
-export const readStoredLocale = (storage: Storage): LocaleId | undefined =>
+export const readStoredLocale = (storage: Pick<Storage, 'getItem'>): LocaleId | undefined =>
   parseLocale(storage.getItem(LOCALE_STORAGE_KEY));

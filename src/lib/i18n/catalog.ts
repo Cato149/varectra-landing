@@ -29,20 +29,26 @@ export interface SitePack {
     technologies: string[];
     links: Array<{ label: string; url: string }>;
   }>;
-  events: Array<{ title: string; date: string; type: string; city: string; summary?: string }>;
+  events: Array<{
+    title: string;
+    date: string;
+    type: string;
+    city: string;
+    summary?: string | undefined;
+  }>;
   gallery: Array<{
     image: string;
     alt: string;
-    caption?: string;
-    date?: string;
-    category?: string;
+    caption?: string | undefined;
+    date?: string | undefined;
+    category?: string | undefined;
     width: number;
     height: number;
   }>;
   protocols: Array<{
     platform: string;
     label: string;
-    username?: string;
+    username?: string | undefined;
     url: string;
     symbol: string;
   }>;

@@ -41,10 +41,10 @@ describe('locales', () => {
       setItem: (key: string, value: string) => {
         storage.set(key, value);
       },
-    } as Storage;
+    };
     persistLocale('ru', fake);
     expect(readStoredLocale(fake)).toBe('ru');
-    expect(readStoredLocale({ getItem: () => null } as Storage)).toBeUndefined();
+    expect(readStoredLocale({ getItem: () => null })).toBeUndefined();
   });
 
   it('defaults to the browser locale until the user picks one', () => {
