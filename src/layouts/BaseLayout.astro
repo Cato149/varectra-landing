@@ -1,0 +1,86 @@
+---
+import '../styles/global.css';
+import { publicUrl } from '../lib/paths';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+}
+
+const { title, description, canonical } = Astro.props;
+const assetBase = import.meta.env.BASE_URL;
+const socialPreview = new URL(publicUrl('/images/social-preview.svg'), canonical);
+---
+
+<!doctype html>
+<html
+  lang="en"
+  data-theme="default"
+  style={`--cursor-arrow: url('${assetBase}cursors/arrow.cur'); --cursor-click: url('${assetBase}cursors/Cursor_15.cur');`}
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#100d18" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href={publicUrl('/favicon.svg')} type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialPreview} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialPreview} />
+    <title>{title}</title>
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      try {
+        const stored = localStorage.getItem('varectra-theme');
+        const themes = ['default', 'dracula', 'gruvbox', 'github', 'nordic'];
+        document.documentElement.dataset.theme = themes.includes(stored) ? stored : 'default';
+      } catch {
+        document.documentElement.dataset.theme = 'default';
+      }
+      try {
+        const storedLocale = localStorage.getItem('varectra-locale');
+        const locales = ['en', 'ru', 'by'];
+        const fromBrowser = () => {
+          const languages = navigator.languages && navigator.languages.length
+            ? navigator.languages
+            : [navigator.language];
+          for (const language of languages) {
+            const primary = String(language || '').toLowerCase().replace(/_/g, '-').split('-')[0];
+            if (primary === 'ru' || primary === 'rus') return 'ru';
+            if (primary === 'be' || primary === 'bel' || primary === 'by') return 'by';
+            if (primary === 'en' || primary === 'eng') return 'en';
+          }
+          return 'en';
+        };
+        const locale = locales.includes(storedLocale) ? storedLocale : fromBrowser();
+        document.documentElement.dataset.locale = locale;
+        document.documentElement.lang = locale === 'by' ? 'be' : locale;
+      } catch {
+        document.documentElement.dataset.locale = 'en';
+      }
+    </script>
+    <noscript>
+      <style>
+        .boot-screen { display: none !important; }
+        .site-shell { visibility: visible !important; }
+      </style>
+    </noscript>
+  </head>
+  <body class="booting">
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="t">
+  <title id="t">Electronics workbench</title>
+  <rect width="1200" height="900" fill="#13101d"/>
+  <path stroke="#302844" stroke-width="12" d="M0 180h1200M0 450h1200M0 720h1200"/>
+  <rect x="270" y="180" width="640" height="500" rx="30" fill="#342b48" stroke="#9b8ac4" stroke-width="10"/>
+  <rect x="410" y="300" width="350" height="240" rx="12" fill="#171424" stroke="#76c9d4" stroke-width="8"/>
+  <g fill="#c6b9e8"><circle cx="330" cy="250" r="24"/><circle cx="850" cy="610" r="24"/><rect x="90" y="620" width="250" height="35" transform="rotate(-28 90 620)"/></g>
+</svg>

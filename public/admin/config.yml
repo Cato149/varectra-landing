@@ -1,0 +1,219 @@
+# Git provider used by Sveltia CMS. Change repo to the production repository.
+backend:
+  name: github
+  repo: Cato149/varectra-landing
+  branch: main
+
+# Enables the local CMS proxy during content editing with `npx decap-server`.
+local_backend: true
+
+# Uploaded media is committed with the content and served from /images.
+media_folder: public/images
+public_folder: /images
+
+# Editorial changes use review branches before reaching the production branch.
+publish_mode: editorial_workflow
+
+# Content lives in src/content/<collection>/<locale>/<file>.
+# Folder name is the locale; the site infers it from the path.
+i18n:
+  structure: multiple_folders
+  locales: [en, ru, by]
+  default_locale: en
+
+collections:
+  # Global identity, SEO, and contact settings.
+  - name: settings
+    label: Site settings
+    i18n: true
+    files:
+      - name: site
+        label: Global site settings
+        file: src/content/settings/{{locale}}/site.json
+        format: json
+        i18n: true
+        fields:
+          - { name: name, label: Display name, widget: string, i18n: true }
+          - { name: handle, label: Terminal handle, widget: string, i18n: duplicate }
+          - { name: tagline, label: Tagline, widget: string, i18n: true }
+          - { name: description, label: SEO description, widget: text, i18n: true }
+          - { name: siteUrl, label: Canonical site URL, widget: string, i18n: duplicate }
+          - { name: telegramUrl, label: Telegram order URL, widget: string, i18n: duplicate }
+          - { name: location, label: Footer location, widget: string, i18n: true }
+
+  # Pageable text records in the whoami TUI.
+  - name: whoami
+    label: Whoami pages
+    folder: src/content/whoami
+    extension: md
+    format: frontmatter
+    create: true
+    i18n: true
+    path: "{{slug}}"
+    slug: "{{fields.order}}-{{slug}}"
+    summary: "{{fields.order}} · {{fields.title}}"
+    sortable_fields: [order, title]
+    fields:
+      - { name: title, label: Page title, widget: string, i18n: true }
+      - { name: label, label: Page subtitle, widget: string, i18n: true }
+      - { name: order, label: Display order, widget: number, value_type: int, i18n: duplicate }
+      - { name: body, label: Content, widget: markdown, i18n: true }
+
+  # Character-map hotspots and line-oriented specification output.
+  - name: specs
+    label: Technical specs
+    folder: src/content/specs
+    extension: md
+    format: frontmatter
+    create: true
+    i18n: true
+    path: "{{slug}}"
+    slug: "{{fields.order}}-{{slug}}"
+    summary: "{{fields.order}} · {{fields.title}} @ {{fields.x}},{{fields.y}}"
+    fields:
+      - { name: title, label: Component, widget: string, i18n: true }
+      - { name: order, label: Display order, widget: number, value_type: int, i18n: duplicate }
+      - { name: x, label: Horizontal position (%), widget: number, value_type: float, min: 0, max: 100, i18n: duplicate }
+      - { name: y, label: Vertical position (%), widget: number, value_type: float, min: 0, max: 100, i18n: duplicate }
+      - name: output
+        label: Terminal output lines
+        widget: list
+        i18n: true
+        field: { name: line, label: Line, widget: string, i18n: true }
+      - { name: body, label: Semantic description, widget: markdown, i18n: true }
+
+  # Safety and social interaction guidance displayed below technical specs.
+  - name: interaction
+    label: Interaction protocol
+    folder: src/content/interaction
+    extension: md
+    format: frontmatter
+    create: true
+    i18n: true
+    path: "{{slug}}"
+    slug: "{{fields.order}}-{{slug}}"
+    sortable_fields: [order, title]
+    fields:
+      - { name: title, label: Interaction, widget: string, i18n: true }
+      - { name: state, label: Display state, widget: string, i18n: true }
+      - { name: description, label: Guidance, widget: text, i18n: true }
+      - name: severity
+        label: Severity
+        widget: select
+        options: [allowed, ask, warning, forbidden, info]
+        i18n: duplicate
+      - { name: order, label: Display order, widget: number, value_type: int, i18n: duplicate }
+      - { name: body, label: Additional notes, widget: markdown, required: false, i18n: true }
+
+  # Projects remain physically flat; directory creates CMS-defined visual folders.
+  - name: projects
+    label: Projects and README
+    folder: src/content/projects
+    extension: md
+    format: frontmatter
+    create: true
+    i18n: true
+    path: "{{slug}}"
+    slug: "{{slug}}"
+    summary: "{{fields.directory}}/{{fields.title}}"
+    sortable_fields: [directory, order, title]
+    fields:
+      - { name: title, label: Filename / title, widget: string, i18n: true }
+      - name: directory
+        label: Visual directory
+        widget: string
+        i18n: duplicate
+        hint: Enter a new directory name to create a category without source changes. Use root for README.
+      - { name: summary, label: Summary, widget: text, i18n: true }
+      - { name: order, label: Display order, widget: number, value_type: int, i18n: duplicate }
+      - { name: body, label: Project Markdown, widget: markdown, i18n: true }
+      - name: images
+        label: Images
+        widget: list
+        required: false
+        i18n: true
+        fields:
+          - { name: src, label: Image, widget: image, i18n: duplicate }
+          - { name: alt, label: Accessible description, widget: string, i18n: true }
+          - { name: width, label: Intrinsic width, widget: number, value_type: int, i18n: duplicate }
+          - { name: height, label: Intrinsic height, widget: number, value_type: int, i18n: duplicate }
+      - name: technologies
+        label: Technologies
+        widget: list
+        required: false
+        i18n: duplicate
+        field: { name: technology, label: Technology, widget: string, i18n: duplicate }
+      - name: links
+        label: External links
+        widget: list
+        required: false
+        i18n: true
+        fields:
+          - { name: label, label: Label, widget: string, i18n: true }
+          - { name: url, label: URL, widget: string, i18n: duplicate }
+
+  # Router log entries are split into history and scheduled tasks at runtime.
+  - name: events
+    label: Events
+    folder: src/content/events
+    extension: md
+    format: frontmatter
+    create: true
+    i18n: true
+    path: "{{slug}}"
+    slug: "{{slug}}"
+    summary: "{{fields.date}} · [{{fields.type}}] {{fields.title}}"
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: Event name, widget: string, i18n: true }
+      - { name: date, label: Date, widget: datetime, date_format: YYYY-MM-DD, time_format: false, i18n: duplicate }
+      - name: type
+        label: Log type
+        widget: string
+        i18n: duplicate
+        hint: Existing types include EVENT, WALK, MARKET and CAMP; new types are allowed.
+      - { name: city, label: City, widget: string, i18n: true }
+      - { name: summary, label: Log note, widget: text, required: false, i18n: true }
+      - { name: body, label: Additional notes, widget: markdown, required: false, i18n: true }
+
+  # File-browser gallery records with explicit dimensions to prevent layout shift.
+  - name: gallery
+    label: Gallery
+    folder: src/content/gallery
+    extension: md
+    format: frontmatter
+    create: true
+    i18n: true
+    path: "{{slug}}"
+    slug: "{{slug}}"
+    sortable_fields: [order, date]
+    fields:
+      - { name: image, label: Full image, widget: image, i18n: duplicate }
+      - { name: alt, label: Accessible description, widget: string, i18n: true }
+      - { name: caption, label: Caption, widget: string, required: false, i18n: true }
+      - { name: date, label: Date, widget: datetime, date_format: YYYY-MM-DD, time_format: false, required: false, i18n: duplicate }
+      - { name: category, label: Category, widget: string, required: false, i18n: duplicate }
+      - { name: width, label: Intrinsic width, widget: number, value_type: int, i18n: duplicate }
+      - { name: height, label: Intrinsic height, widget: number, value_type: int, i18n: duplicate }
+      - { name: order, label: Display order, widget: number, value_type: int, i18n: duplicate }
+      - { name: body, label: Notes, widget: markdown, required: false, i18n: true }
+
+  # Monochrome communication links rendered as protocol files.
+  - name: protocols
+    label: Social protocols
+    folder: src/content/protocols
+    extension: md
+    format: frontmatter
+    create: true
+    i18n: true
+    path: "{{slug}}"
+    slug: "{{slug}}"
+    sortable_fields: [order, platform]
+    fields:
+      - { name: platform, label: Platform, widget: string, i18n: duplicate, hint: "Name selects the 8-bit icon: BARQ, Telegram, WhatsApp, Email, X, Discord, Fur Affinity, Steam, VK, GitHub, Bluesky." }
+      - { name: label, label: Link description, widget: string, i18n: true }
+      - { name: url, label: URL, widget: string, i18n: duplicate }
+      - { name: username, label: Username, widget: string, required: false, i18n: duplicate }
+      - { name: symbol, label: Monochrome symbol, widget: string, default: ">", i18n: duplicate }
+      - { name: order, label: Display order, widget: number, value_type: int, i18n: duplicate }
+      - { name: body, label: Notes, widget: markdown, required: false, i18n: true }

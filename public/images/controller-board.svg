@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="t">
+  <title id="t">Controller board diagram</title>
+  <rect width="800" height="600" fill="#171424"/>
+  <rect x="95" y="90" width="610" height="420" rx="28" fill="#272139" stroke="#9b8ac4" stroke-width="8"/>
+  <g fill="none" stroke="#76c9d4" stroke-width="5"><path d="M160 180h145v90h165v120h170"/><path d="M160 410h190V300h290"/></g>
+  <g fill="#c6b9e8"><rect x="300" y="210" width="190" height="180" rx="8"/><circle cx="160" cy="180" r="22"/><circle cx="640" cy="390" r="22"/><circle cx="160" cy="410" r="22"/><circle cx="640" cy="300" r="22"/></g>
+  <g fill="#171424"><rect x="330" y="240" width="130" height="120" rx="5"/></g>
+</svg>

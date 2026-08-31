@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="t">
+  <title id="t">Varectra personal system</title>
+  <rect width="1200" height="630" fill="#100d18"/>
+  <path stroke="#29223a" d="M0 90h1200M0 180h1200M0 270h1200M0 360h1200M0 450h1200M0 540h1200M100 0v630M200 0v630M300 0v630M400 0v630M500 0v630M600 0v630M700 0v630M800 0v630M900 0v630M1000 0v630M1100 0v630"/>
+  <rect x="80" y="75" width="1040" height="480" fill="#191525" stroke="#55496b" stroke-width="3"/>
+  <text x="130" y="185" fill="#76c9d4" font-family="monospace" font-size="34">varectra@home:~$ ./connect</text>
+  <text x="130" y="325" fill="#ded8ec" font-family="monospace" font-weight="700" font-size="102">VARECTRA</text>
+  <text x="135" y="410" fill="#9e96b2" font-family="monospace" font-size="30">PROTOGEN · EMBEDDED ENGINEER · MAKER</text>
+  <text x="135" y="490" fill="#9b8ac4" font-family="monospace" font-size="28">[ system online ]</text>
+</svg>

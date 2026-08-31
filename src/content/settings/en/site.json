@@ -1,0 +1,10 @@
+{
+  "locale": "en",
+  "name": "Varectra",
+  "handle": "varectra@home",
+  "tagline": "Protogen. Embedded engineer. Maker.",
+  "description": "Personal system of Varectra: character lore, engineering projects, events, gallery and communication protocols.",
+  "siteUrl": "https://varectra.example",
+  "telegramUrl": "https://t.me/varectra",
+  "location": "local network"
+}
