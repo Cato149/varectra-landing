@@ -1,0 +1,10 @@
+{
+  "locale": "ru",
+  "name": "Varectra",
+  "handle": "varectra@home",
+  "tagline": "Протоген. Инженер embedded. Мейкер.",
+  "description": "Персональная система Varectra: лор персонажа, инженерные проекты, события, галерея и каналы связи.",
+  "siteUrl": "https://varectra.example",
+  "telegramUrl": "https://t.me/varectra",
+  "location": "локальная сеть"
+}

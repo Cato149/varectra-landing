@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 900" role="img" aria-labelledby="title desc">
+  <title id="title">Varectra technical character portrait</title>
+  <desc id="desc">Stylized purple protogen with a dark visor, pointed ears, broad mane and articulated paws.</desc>
+  <defs>
+    <linearGradient id="fur" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#9b8ac4"/>
+      <stop offset="1" stop-color="#56436f"/>
+    </linearGradient>
+    <linearGradient id="visor" x1="0" x2="1">
+      <stop stop-color="#121020"/>
+      <stop offset="1" stop-color="#292442"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#fur)" stroke="#c6b9e8" stroke-width="10" d="M181 245 103 55l154 92c28-13 58-19 91-19 34 0 65 7 94 20L596 56l-78 196c35 48 52 101 50 160-2 70-36 127-93 168l69 239-118-73-76 102-79-103-118 73 73-240c-60-42-94-101-94-174 0-61 16-114 49-159Z"/>
+  <path fill="url(#visor)" stroke="#76c9d4" stroke-width="9" d="M174 283c72-85 277-96 361-8l-20 175c-74 87-253 102-333 8l-8-175Z"/>
+  <path fill="none" stroke="#9fe4e9" stroke-linecap="round" stroke-width="17" d="m248 345 56 18m149-21-55 19"/>
+  <path fill="none" stroke="#9fe4e9" stroke-linecap="round" stroke-width="14" d="M302 415c33 23 69 23 103-2"/>
+  <path fill="#3b2c50" stroke="#c6b9e8" stroke-width="9" d="m199 565-79 107 107-32-32 112 111-70 44 132 43-132 112 70-33-112 108 32-81-109c-93 57-207 58-300 2Z"/>
+  <path fill="#6d568d" stroke="#c6b9e8" stroke-width="9" d="M247 669 98 788l63 60 163-127m129-51 149 118-62 60-165-127"/>
+  <g fill="#76c9d4">
+    <circle cx="165" cy="278" r="12"/><circle cx="538" cy="270" r="12"/>
+    <circle cx="349" cy="574" r="10"/>
+  </g>
+</svg>

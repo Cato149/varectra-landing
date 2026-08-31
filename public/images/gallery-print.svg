@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="t">
+  <title id="t">Purple printed enclosure</title>
+  <rect width="1200" height="900" fill="#171424"/>
+  <path fill="#5d4978" stroke="#c6b9e8" stroke-width="13" d="m192 303 578-176 244 149-22 393-571 118-235-162Z"/>
+  <path fill="#382b4d" stroke="#76c9d4" stroke-width="9" d="m192 303 238 154 562-181-222-149Z"/>
+  <g fill="none" stroke="#80689f" stroke-width="6"><path d="m211 344 214 138 549-174"/><path d="m209 385 211 133 552-171"/><path d="m206 426 211 128 553-169"/><path d="m204 467 210 124 554-168"/></g>
+</svg>

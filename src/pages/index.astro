@@ -1,0 +1,173 @@
+---
+import { getCollection } from 'astro:content';
+import BootSequence from '../components/boot/BootSequence.svelte';
+import SiteNav from '../components/nav/SiteNav.svelte';
+import GlobalTerminal from '../components/terminal/GlobalTerminal.svelte';
+import VirtualTerminal from '../components/terminal/VirtualTerminal.svelte';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { renderSafeMarkdown } from '../lib/content/markdown';
+import type { SiteCatalog, SitePack } from '../lib/i18n/catalog';
+import { contentKey, groupByContentLocale, resolveEntryLocale } from '../lib/i18n/content';
+import { contentLocales, defaultLocale } from '../lib/i18n/locales';
+
+const [
+  settingsEntries,
+  whoamiEntries,
+  specEntries,
+  interactionEntries,
+  projectEntries,
+  eventEntries,
+  galleryEntries,
+  protocolEntries,
+] = await Promise.all([
+  getCollection('settings'),
+  getCollection('whoami'),
+  getCollection('specs'),
+  getCollection('interaction'),
+  getCollection('projects'),
+  getCollection('events'),
+  getCollection('gallery'),
+  getCollection('protocols'),
+]);
+
+const byOrder = <T extends { order: number }>(a: T, b: T) => a.order - b.order;
+
+const settingsByLocale = groupByContentLocale(
+  settingsEntries.map((entry) => ({
+    ...entry.data,
+    locale: resolveEntryLocale(entry.id, entry.data.locale),
+  })),
+);
+
+const englishSettings = settingsByLocale[defaultLocale][0];
+if (!englishSettings) throw new Error('Site settings content is required.');
+
+const whoamiByLocale = groupByContentLocale(
+  whoamiEntries
+    .map((entry) => ({
+      locale: resolveEntryLocale(entry.id, entry.data.locale),
+      title: entry.data.title,
+      label: entry.data.label,
+      order: entry.data.order,
+      body: renderSafeMarkdown(entry.body ?? ''),
+    }))
+    .sort(byOrder),
+);
+
+const specsByLocale = groupByContentLocale(
+  specEntries
+    .map((entry) => ({
+      locale: resolveEntryLocale(entry.id, entry.data.locale),
+      id: contentKey(entry.id),
+      title: entry.data.title,
+      x: entry.data.x,
+      y: entry.data.y,
+      output: entry.data.output,
+      order: entry.data.order,
+      body: renderSafeMarkdown(entry.body ?? ''),
+    }))
+    .sort(byOrder),
+);
+
+const interactionsByLocale = groupByContentLocale(
+  interactionEntries
+    .map((entry) => ({
+      ...entry.data,
+      locale: resolveEntryLocale(entry.id, entry.data.locale),
+    }))
+    .sort(byOrder),
+);
+
+const projectsByLocale = groupByContentLocale(
+  projectEntries
+    .map((entry) => ({
+      locale: resolveEntryLocale(entry.id, entry.data.locale),
+      id: contentKey(entry.id),
+      title: entry.data.title,
+      directory: entry.data.directory,
+      summary: entry.data.summary,
+      order: entry.data.order,
+      body: renderSafeMarkdown(entry.body ?? ''),
+      images: entry.data.images,
+      technologies: entry.data.technologies,
+      links: entry.data.links,
+    }))
+    .sort(byOrder),
+);
+
+const eventsByLocale = groupByContentLocale(
+  eventEntries.map((entry) => ({
+    locale: resolveEntryLocale(entry.id, entry.data.locale),
+    title: entry.data.title,
+    date: entry.data.date.toISOString(),
+    type: entry.data.type,
+    city: entry.data.city,
+    summary: entry.data.summary,
+  })),
+);
+
+const galleryByLocale = groupByContentLocale(
+  galleryEntries
+    .map((entry) => ({
+      locale: resolveEntryLocale(entry.id, entry.data.locale),
+      image: entry.data.image,
+      alt: entry.data.alt,
+      caption: entry.data.caption,
+      date: entry.data.date?.toISOString(),
+      category: entry.data.category,
+      width: entry.data.width,
+      height: entry.data.height,
+      order: entry.data.order,
+    }))
+    .sort(byOrder),
+);
+
+const protocolsByLocale = groupByContentLocale(
+  protocolEntries
+    .map((entry) => ({
+      ...entry.data,
+      locale: resolveEntryLocale(entry.id, entry.data.locale),
+    }))
+    .sort(byOrder),
+);
+
+const catalog = Object.fromEntries(
+  contentLocales.map((id) => {
+    const settings = settingsByLocale[id][0] ?? englishSettings;
+    const pack: SitePack = {
+      tagline: settings.tagline,
+      description: settings.description,
+      location: settings.location,
+      whoami: whoamiByLocale[id],
+      specs: specsByLocale[id],
+      interactions: interactionsByLocale[id],
+      projects: projectsByLocale[id],
+      events: eventsByLocale[id],
+      gallery: galleryByLocale[id],
+      protocols: protocolsByLocale[id],
+    };
+    return [id, pack];
+  }),
+) as SiteCatalog;
+---
+
+<BaseLayout
+  title={`${englishSettings.name} — Personal System`}
+  description={englishSettings.description}
+  canonical={englishSettings.siteUrl}
+>
+  <BootSequence client:load />
+
+  <div class="site-shell">
+    <SiteNav client:load />
+    <VirtualTerminal
+      client:load
+      name={englishSettings.name}
+      handle={englishSettings.handle}
+      telegramUrl={englishSettings.telegramUrl}
+      catalog={catalog}
+    />
+  </div>
+
+  <GlobalTerminal client:load />
+</BaseLayout>

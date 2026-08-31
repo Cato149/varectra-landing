@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="t">
+  <title id="t">Varectra visor diagnostics</title>
+  <rect width="1200" height="900" fill="#100d18"/>
+  <path fill="#332943" stroke="#9b8ac4" stroke-width="14" d="M174 236c181-141 639-143 849 4l-57 426c-221 131-534 132-738-3Z"/>
+  <path fill="#171424" stroke="#76c9d4" stroke-width="11" d="M239 286c181-97 511-100 718-4l-45 325c-194 98-453 99-630-2Z"/>
+  <g fill="none" stroke="#9fe4e9" stroke-linecap="round" stroke-width="30"><path d="m386 414 116 37"/><path d="m815 414-116 37"/><path d="M495 531c72 59 145 58 218-2"/></g>
+</svg>

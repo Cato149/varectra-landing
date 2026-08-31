@@ -1,0 +1,21 @@
+---
+import { publicUrl } from '../../lib/paths';
+
+// Sveltia looks for /admin/config.yml by default; pin it so GitHub project Pages
+// (`/repo/admin/…`) still finds the file under `base`.
+const configUrl = publicUrl('/admin/config.yml');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <link href={configUrl} type="text/yaml" rel="cms-config-url" />
+    <title>Varectra Content Console</title>
+  </head>
+  <body>
+    <script is:inline src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+  </body>
+</html>

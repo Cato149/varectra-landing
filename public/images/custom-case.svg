@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="t">
+  <title id="t">Custom enclosure technical view</title>
+  <rect width="800" height="600" fill="#171424"/>
+  <path fill="#4a3b61" stroke="#c6b9e8" stroke-width="8" d="m145 220 359-124 151 96-15 242-350 77-145-95Z"/>
+  <path fill="#292139" stroke="#76c9d4" stroke-width="6" d="m145 220 151 94 344-122-136-96Z"/>
+  <path fill="none" stroke="#9b8ac4" stroke-width="5" d="m296 314-6 197m350-319-344 122"/>
+  <g fill="#76c9d4"><circle cx="214" cy="267" r="10"/><circle cx="578" cy="209" r="10"/><circle cx="222" cy="424" r="10"/><circle cx="576" cy="405" r="10"/></g>
+</svg>
