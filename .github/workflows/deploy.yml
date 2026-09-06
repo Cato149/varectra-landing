@@ -32,8 +32,8 @@ jobs:
           node-version: 20
         # Optional overrides when using a custom domain at the site root:
         # env:
-        #   SITE: https://varectra.example
-        #   BASE_PATH: /
+           SITE: https://varectra.net
+           BASE_PATH: /
 
   deploy:
     needs: build
