@@ -30,10 +30,10 @@ jobs:
         with:
           # Keep CI on the Node range declared in package.json engines.
           node-version: 20
-        # Optional overrides when using a custom domain at the site root:
-        # env:
-           SITE: https://varectra.net
-           BASE_PATH: /
+        # Custom domain at the site root (not /<repo>/ on github.io).
+        env:
+          SITE: https://varectra.net
+          BASE_PATH: /
 
   deploy:
     needs: build
