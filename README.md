@@ -62,6 +62,8 @@ Also update `siteUrl` in `src/content/settings/`. Admin is then
 Content lives under `src/content/`:
 
 - `settings/<locale>/` — identity, SEO URL and Telegram order URL
+- `boot/<locale>/` — start-screen prompt, kernel logs, greeting and ASCII art
+- `character-map/<locale>/` — character-map illustration and alt text
 - `whoami/<locale>/` — pageable text records
 - `specs/<locale>/` — character-map hotspots and output lines
 - `interaction/<locale>/` — interaction protocol states

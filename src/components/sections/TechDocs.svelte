@@ -4,6 +4,7 @@
   import { resolveHotspotGesture } from '../../lib/sections/hotspots';
   import TuiBox from '../tui/TuiBox.svelte';
   import TuiButton from '../tui/TuiButton.svelte';
+  import type { CharacterMapArt } from '../../lib/i18n/catalog';
   import { messages } from '../../lib/i18n/store';
   import { publicUrl } from '../../lib/paths';
 
@@ -17,6 +18,7 @@
   }
 
   export let specs: Spec[] = [];
+  export let map: CharacterMapArt;
 
   $: copy = $messages;
 
@@ -235,10 +237,10 @@
       <TuiBox title={copy.techDocs.mapTitle} meta={copy.techDocs.mapMeta}>
         <div class="map-stage">
           <img
-            src={publicUrl('/images/varectra.webp')}
-            width="1024"
-            height="1536"
-            alt="Varectra protogen technical character map"
+            src={publicUrl(map.image)}
+            width={map.width}
+            height={map.height}
+            alt={map.alt}
             decoding="async"
           />
           {#each specs as spec, specIndex}

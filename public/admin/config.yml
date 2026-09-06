@@ -41,6 +41,47 @@ collections:
           - { name: telegramUrl, label: Telegram order URL, widget: string, i18n: duplicate }
           - { name: location, label: Footer location, widget: string, i18n: true }
 
+  # Boot splash: kernel logs, greeting, and the identity ASCII raster.
+  - name: boot
+    label: Boot screen
+    i18n: true
+    files:
+      - name: screen
+        label: Start screen
+        file: src/content/boot/{{locale}}/screen.json
+        format: json
+        i18n: true
+        fields:
+          - { name: prompt, label: Console prompt, widget: string, i18n: true }
+          - { name: idleLog, label: Idle log line, widget: string, i18n: true, hint: Shown before kernel lines start printing. }
+          - { name: greeting, label: Greeting, widget: string, i18n: true }
+          - name: logs
+            label: Kernel log lines
+            widget: list
+            i18n: true
+            field: { name: line, label: Line, widget: string, i18n: true }
+          - name: ascii
+            label: ASCII art
+            widget: text
+            i18n: duplicate
+            hint: Keep trailing spaces so columns stay aligned. Metrics are measured from the art at build time.
+
+  # Base illustration behind character-map hotspots.
+  - name: character-map
+    label: Character map
+    i18n: true
+    files:
+      - name: map
+        label: Character map art
+        file: src/content/character-map/{{locale}}/map.json
+        format: json
+        i18n: true
+        fields:
+          - { name: image, label: Map art, widget: image, i18n: duplicate }
+          - { name: alt, label: Accessible description, widget: string, i18n: true }
+          - { name: width, label: Intrinsic width, widget: number, value_type: int, i18n: duplicate }
+          - { name: height, label: Intrinsic height, widget: number, value_type: int, i18n: duplicate }
+
   # Pageable text records in the whoami TUI.
   - name: whoami
     label: Whoami pages

@@ -184,7 +184,7 @@
     {:else if current.id === 'whoami'}
       <Whoami pages={pack.whoami} active />
     {:else if current.id === 'tech-docs'}
-      <TechDocs specs={pack.specs} />
+      <TechDocs specs={pack.specs} map={pack.characterMap} />
     {:else if current.id === 'exec'}
       <Exec projects={pack.projects} {telegramUrl} />
     {:else if current.id === 'router'}

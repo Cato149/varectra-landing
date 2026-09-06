@@ -20,6 +20,31 @@ const settings = defineCollection({
   }),
 });
 
+// Start-screen copy and identity ASCII; one file per locale.
+const boot = defineCollection({
+  loader: glob({ base: './src/content/boot', pattern: '**/*.json' }),
+  schema: z.object({
+    locale: localeField,
+    prompt: z.string(),
+    idleLog: z.string(),
+    greeting: z.string(),
+    logs: z.array(z.string()),
+    ascii: z.string(),
+  }),
+});
+
+// Illustration behind /tech-docs hotspots. Image path is shared across locales.
+const characterMap = defineCollection({
+  loader: glob({ base: './src/content/character-map', pattern: '**/*.json' }),
+  schema: z.object({
+    locale: localeField,
+    image: z.string(),
+    alt: z.string(),
+    width: z.number().int().positive(),
+    height: z.number().int().positive(),
+  }),
+});
+
 const whoami = defineCollection({
   loader: markdown('./src/content/whoami'),
   schema: z.object({
@@ -125,6 +150,8 @@ const protocols = defineCollection({
 
 export const collections = {
   settings,
+  boot,
+  characterMap,
   whoami,
   specs,
   interaction,

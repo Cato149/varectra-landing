@@ -12,6 +12,8 @@ import { contentLocales, defaultLocale } from '../lib/i18n/locales';
 
 const [
   settingsEntries,
+  bootEntries,
+  characterMapEntries,
   whoamiEntries,
   specEntries,
   interactionEntries,
@@ -21,6 +23,8 @@ const [
   protocolEntries,
 ] = await Promise.all([
   getCollection('settings'),
+  getCollection('boot'),
+  getCollection('characterMap'),
   getCollection('whoami'),
   getCollection('specs'),
   getCollection('interaction'),
@@ -41,6 +45,26 @@ const settingsByLocale = groupByContentLocale(
 
 const englishSettings = settingsByLocale[defaultLocale][0];
 if (!englishSettings) throw new Error('Site settings content is required.');
+
+const bootByLocale = groupByContentLocale(
+  bootEntries.map((entry) => ({
+    ...entry.data,
+    locale: resolveEntryLocale(entry.id, entry.data.locale),
+  })),
+);
+
+const englishBoot = bootByLocale[defaultLocale][0];
+if (!englishBoot) throw new Error('Boot screen content is required.');
+
+const characterMapByLocale = groupByContentLocale(
+  characterMapEntries.map((entry) => ({
+    ...entry.data,
+    locale: resolveEntryLocale(entry.id, entry.data.locale),
+  })),
+);
+
+const englishCharacterMap = characterMapByLocale[defaultLocale][0];
+if (!englishCharacterMap) throw new Error('Character map art content is required.');
 
 const whoamiByLocale = groupByContentLocale(
   whoamiEntries
@@ -134,10 +158,25 @@ const protocolsByLocale = groupByContentLocale(
 const catalog = Object.fromEntries(
   contentLocales.map((id) => {
     const settings = settingsByLocale[id][0] ?? englishSettings;
+    const boot = bootByLocale[id][0] ?? englishBoot;
+    const characterMap = characterMapByLocale[id][0] ?? englishCharacterMap;
     const pack: SitePack = {
       tagline: settings.tagline,
       description: settings.description,
       location: settings.location,
+      boot: {
+        prompt: boot.prompt,
+        idleLog: boot.idleLog,
+        greeting: boot.greeting,
+        logs: boot.logs,
+        ascii: boot.ascii,
+      },
+      characterMap: {
+        image: characterMap.image,
+        alt: characterMap.alt,
+        width: characterMap.width,
+        height: characterMap.height,
+      },
       whoami: whoamiByLocale[id],
       specs: specsByLocale[id],
       interactions: interactionsByLocale[id],
@@ -156,7 +195,7 @@ const catalog = Object.fromEntries(
   description={englishSettings.description}
   canonical={englishSettings.siteUrl}
 >
-  <BootSequence client:load />
+  <BootSequence client:load catalog={catalog} />
 
   <div class="site-shell">
     <SiteNav client:load />

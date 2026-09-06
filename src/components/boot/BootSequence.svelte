@@ -7,18 +7,14 @@
     type BootState,
   } from '../../lib/boot/machine';
   import ProtogenAscii from './ProtogenAscii.svelte';
-  import { initLocale, messages } from '../../lib/i18n/store';
+  import type { SiteCatalog } from '../../lib/i18n/catalog';
+  import { defaultLocale, resolveContentLocale } from '../../lib/i18n/locales';
+  import { initLocale, locale, messages } from '../../lib/i18n/store';
 
-  const bootLogs = [
-    '[  0.042] kernel: initializing neural interface',
-    '[  OK  ] Mounted /personality.',
-    '[  OK  ] Started social-protocols.service.',
-    '[  0.811] visor: controller detected at uplink0',
-    '[ INFO ] character-profile: loading Varectra',
-    '[  OK  ] Reached target Local Network.',
-    '[ WARN ] fluff-monitor: density above nominal',
-    '[  OK  ] Started varectra.service.',
-  ];
+  export let catalog: SiteCatalog;
+
+  $: pack = catalog[resolveContentLocale($locale)] ?? catalog[defaultLocale];
+  $: boot = pack.boot;
 
   let state: BootState = 'initial';
   let visibleLogs: string[] = [];
@@ -76,8 +72,9 @@
 
       if (state === 'logs') {
         visibleLogs = [];
-        const perLine = timings.logs / bootLogs.length;
-        for (const line of bootLogs) {
+        const lines = boot.logs;
+        const perLine = lines.length === 0 ? 0 : timings.logs / lines.length;
+        for (const line of lines) {
           await wait(perLine);
           if (token !== runToken) return;
           visibleLogs = [...visibleLogs, line];
@@ -85,7 +82,7 @@
         }
         state = 'activation';
       } else if (state === 'greeting') {
-        const message = copy.boot.greeting;
+        const message = boot.greeting;
         if (reducedMotion || returningVisitor) {
           greeting = message;
         } else {
@@ -129,11 +126,11 @@
   aria-hidden={state === 'complete'}
 >
   <div class="boot-console">
-    <p class="boot-console__prompt">varectra@home:~$ ./boot --identity</p>
+    <p class="boot-console__prompt">{boot.prompt}</p>
     <p class="sr-only">{copy.boot.portrait}</p>
 
     <div class="boot-stream">
-      <ProtogenAscii />
+      <ProtogenAscii art={boot.ascii} />
 
       <div class="boot-output" bind:this={logPane} aria-live="polite">
         {#each visibleLogs as line}
@@ -143,7 +140,7 @@
           <div class="boot-line" data-level="say">&gt; {greeting}<span aria-hidden="true">_</span></div>
         {/if}
         {#if visibleLogs.length === 0}
-          <div class="boot-line" data-level="kernel">[  0.000] framebuffer: mapping identity raster</div>
+          <div class="boot-line" data-level="kernel">{boot.idleLog}</div>
         {/if}
       </div>
     </div>

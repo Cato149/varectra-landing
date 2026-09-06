@@ -1,9 +1,26 @@
 import type { ContentLocale } from './locales';
 
+export interface BootScreen {
+  prompt: string;
+  idleLog: string;
+  greeting: string;
+  logs: string[];
+  ascii: string;
+}
+
+export interface CharacterMapArt {
+  image: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
 export interface SitePack {
   tagline: string;
   description: string;
   location: string;
+  boot: BootScreen;
+  characterMap: CharacterMapArt;
   whoami: Array<{ title: string; label: string; body: string }>;
   specs: Array<{
     id: string;

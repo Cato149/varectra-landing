@@ -1,13 +1,19 @@
 <script lang="ts">
-  import { asciiMetrics, protogenArt } from '../../lib/boot/ascii';
+  import { measureAsciiArt } from '../../lib/boot/ascii';
+
+  export let art: string;
+
+  $: metrics = measureAsciiArt(art);
+  $: cols = Math.max(metrics.cols, 1);
+  $: rows = Math.max(metrics.rows, 1);
 </script>
 
 <div class="protogen-figure">
   <pre
     class="protogen-ascii"
-    style={`--ascii-cols: ${asciiMetrics.desktop.cols}; --ascii-rows: ${asciiMetrics.desktop.rows}`}
+    style={`--ascii-cols: ${cols}; --ascii-rows: ${rows}`}
     aria-hidden="true"
-  >{protogenArt}</pre>
+  >{art}</pre>
 </div>
 
 <style>

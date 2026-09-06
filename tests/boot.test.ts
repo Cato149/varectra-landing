@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { asciiMetrics, protogenArt, protogenAscii } from '../src/lib/boot/ascii';
+import screen from '../src/content/boot/en/screen.json';
+import { measureAsciiArt } from '../src/lib/boot/ascii';
 import {
   getBootTimings,
   nextBootState,
@@ -68,17 +69,19 @@ describe('boot state machine', () => {
   });
 });
 
-describe('protogen ascii', () => {
-  it('keeps a single identity raster for every viewport', () => {
-    expect(asciiMetrics.desktop).toEqual(asciiMetrics.tablet);
-    expect(asciiMetrics.desktop).toEqual(asciiMetrics.mobile);
-    expect(protogenArt.split('\n')).toHaveLength(asciiMetrics.desktop.rows);
-    expect(asciiMetrics.desktop.cols).toBe(125);
+describe('boot ascii art', () => {
+  it('measures columns from the longest line and ignores a trailing newline', () => {
+    expect(measureAsciiArt('')).toEqual({ cols: 0, rows: 0 });
+    expect(measureAsciiArt('ab\nabcd\na\n')).toEqual({ cols: 4, rows: 3 });
   });
 
-  it('uses the plus-based source portrait', () => {
-    expect(protogenAscii.desktop).toBe(protogenArt);
-    expect(protogenArt).toContain('++++++');
-    expect(protogenArt).toContain('++++++++++++');
+  it('keeps the CMS portrait aligned to its own raster', () => {
+    const metrics = measureAsciiArt(screen.ascii);
+    const lines = screen.ascii.replace(/\n$/, '').split('\n');
+
+    expect(metrics.rows).toBe(lines.length);
+    expect(metrics.cols).toBe(Math.max(...lines.map((line) => line.length)));
+    expect(screen.ascii).toContain('++++++');
+    expect(screen.ascii).toContain('++++++++++++');
   });
 });
