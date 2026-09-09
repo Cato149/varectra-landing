@@ -1,7 +1,7 @@
 ---
-title: Summer Furwalk
-date: 2026-06-12
-type: WALK
-city: Moscow
-summary: Long route, good weather, acceptable cooling performance.
+title: 'Foxwood 2026: Circus'
+date: 2026-05-14
+type: CONVENT
+city: Маскоўская вобласць
+summary: Прыймау удзел там лiку як валанцёр
 ---
