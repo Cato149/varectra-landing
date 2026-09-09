@@ -1,8 +1,8 @@
 ---
-title: Конвент Northern Paws
-date: 2026-05-20
+title: 'UFC: United Furry Convention'
+date: 2026-04-16
 type: EVENT
-city: Санкт-Петербург
-summary: Новые связи, знакомые лица и очень полный буфер сигналов.
+city: Московская область
+summary: ''
 locale: ru
 ---

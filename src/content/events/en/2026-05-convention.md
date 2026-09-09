@@ -1,7 +1,7 @@
 ---
-title: Northern Paws Convention
-date: 2026-05-20
+title: 'UFC: United Furry Convention'
+date: 2026-04-16
 type: EVENT
-city: Saint Petersburg
-summary: New connections, familiar faces and a very full signal buffer.
+city: Moscow region
+summary: ''
 ---
