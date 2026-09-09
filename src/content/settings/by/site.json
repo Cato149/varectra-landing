@@ -1,10 +1,10 @@
 {
-  "locale": "by",
   "name": "Varectra",
   "handle": "varectra@home",
-  "tagline": "Protogen. Embedded engineer. Maker.",
+  "tagline": "Пратаген. Эмбэддед распрацоўшчык. Мэйкер. Фурсьютэр",
   "description": "Personal system of Varectra: character lore, engineering projects, events, gallery and communication protocols.",
   "siteUrl": "https://varectra.example",
   "telegramUrl": "https://t.me/varectra",
-  "location": "local network"
+  "location": "Лакальная сетка",
+  "locale": "by"
 }
