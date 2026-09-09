@@ -1,7 +1,7 @@
 ---
 title: 'Foxwood 2026: Circus'
 date: 2026-05-14
-type: CONVENT
+type: CONVENTION
 city: Маскоўская вобласць
 summary: Прыймау удзел там лiку як валанцёр
 ---
