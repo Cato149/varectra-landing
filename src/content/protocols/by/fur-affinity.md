@@ -1,8 +1,8 @@
 ---
 platform: Fur Affinity
 label: gallery node
-url: https://www.furaffinity.net/user/varectra
-username: varectra
-symbol: "↗"
-order: 7
+url: https://www.furaffinity.net/user/astovarectra
+username: astovarectra
+symbol: ↗
+order: 6
 ---
