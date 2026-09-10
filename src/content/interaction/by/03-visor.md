@@ -1,7 +1,7 @@
 ---
-title: VISOR CONTACT
-state: ASK FIRST
-description: It is a display, a face and sensitive hardware all at once.
+title: КАНТАКТ З ВIЗАРАМ
+state: СПАЧАТКУ СПЫТАЙ
+description: Гэта адначасова і дысплей, і твар, і адчувальнае апаратнае забеспячэнне
 severity: ask
 order: 3
 ---
