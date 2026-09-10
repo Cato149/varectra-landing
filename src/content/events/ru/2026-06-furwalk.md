@@ -1,8 +1,8 @@
 ---
-title: Летний фурволк
-date: 2026-06-12
-type: WALK
-city: Москва
-summary: Длинный маршрут, хорошая погода, приемлемое охлаждение.
+title: 'Foxwood 2026: Circus'
+date: 2026-05-14
+type: CONVENTION
+city: Московская область
+summary: ''
 locale: ru
 ---
