@@ -1,7 +1,7 @@
 ---
-title: HUGS
-state: ALLOWED
-description: Friendly hugs are welcome; approach visibly first.
+title: Абдымкi
+state: ДАЗВОЛЕНА
+description: Сяброўскія абдымкі вітаюцца. Спачатку падыдзі так, каб цябе было відаць
 severity: allowed
 order: 1
 ---
