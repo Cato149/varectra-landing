@@ -1,8 +1,7 @@
 ---
 title: BIO
-label: Identity record
+label: Короткая пра сябе
 order: 1
 ---
-Hello. I am **Varectra** — a protogen, engineer and maker inhabiting the useful space between firmware and fur.
 
-This node collects the things I build, the places I visit and a few practical protocols for saying hello.
+Прывітанне. Я **Varectra** — протоген, распрацоўшчык ўбудавальных сістэм, мейкер, фурсьютер. Пражываю ў Маскве, прыехаў з усходу Беларусі. Маю ступень бакалаўра мехатронікі. Знаходжуся ў закрытых адносінах. Захапляюся 3D-пячаткай, электронікай, кемпінгамі, горным роварам

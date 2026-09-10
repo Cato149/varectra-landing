@@ -1,8 +1,7 @@
 ---
 title: BIO
-label: Identity record
+label: Briefly about myself
 order: 1
 ---
-Hello. I am **Varectra** — a protogen, engineer and maker inhabiting the useful space between firmware and fur.
 
-This node collects the things I build, the places I visit and a few practical protocols for saying hello.
+Hello. I am **Varectra** — a protogen, embedded system developer, maker, and fursuiter. I live in Moscow, I came from the east of Belarus. I have a bachelor's degree in mechatronics. I am in a closed relationship. I am fond of 3D printing, electronics, camping, mountain biking
