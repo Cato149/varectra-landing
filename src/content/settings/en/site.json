@@ -1,8 +1,8 @@
 {
   "name": "Varectra",
   "handle": "varectra@home",
-  "tagline": "Protogen. Embedded embedded developer. Maker. Fursuiter",
-  "description": "Personal system of Varectra: character lore, engineering projects, events, gallery and communication protocols.",
+  "tagline": "Protogen. Embedded developer. Maker. Fursuiter",
+  "description": "Personal system of Varectra: contacts, character, projects, interaction",
   "siteUrl": "https://varectra.example",
   "telegramUrl": "https://t.me/varectra",
   "location": "Local network",
