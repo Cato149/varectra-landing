@@ -1,9 +1,9 @@
 ---
 platform: VK
 label: локальная сеть
-url: https://vk.com/varectra
-username: varectra
-symbol: "↗"
+url: https://vk.com/varactoid
+username: varactoid
+symbol: ↗
 order: 9
 locale: ru
 ---
