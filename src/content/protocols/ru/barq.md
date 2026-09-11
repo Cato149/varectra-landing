@@ -4,6 +4,6 @@ label: ближайшие узлы
 url: https://barq.app/
 username: varectra
 symbol: ↗
-order: 3
+order: 4
 locale: ru
 ---
