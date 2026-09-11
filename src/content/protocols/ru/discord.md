@@ -4,6 +4,6 @@ label: голос и текст
 url: https://discord.com/users/varectra
 username: varectra
 symbol: ↗
-order: 2
+order: 3
 locale: ru
 ---
