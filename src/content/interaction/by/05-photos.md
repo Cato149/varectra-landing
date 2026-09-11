@@ -1,7 +1,7 @@
 ---
-title: PHOTOS
-state: ALLOWED
-description: A quick signal before taking the photo produces better expressions.
+title: ФОТА
+state: ДАЗВОЛЕНА
+description: Кароткі сігнал перад кадрам дае больш жывыя выразы
 severity: allowed
 order: 5
 ---
