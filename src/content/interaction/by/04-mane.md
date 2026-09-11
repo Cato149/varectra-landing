@@ -1,7 +1,7 @@
 ---
-title: MANE CONTACT
-state: ASK FIRST
-description: Fluff access is usually negotiable; pulling never is.
+title: КАНТАКТ З ПОЎСЦЮ
+state: СПАЧАТКУ СПЫТАЙ
+description: Доступ да поўсцi звычайна з'яўляецца прадметам перамоваў. Цягнуць - ніколі
 severity: warning
 order: 4
 ---
