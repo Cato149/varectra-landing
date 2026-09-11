@@ -2,7 +2,7 @@
 platform: Email
 label: почтовый ящик
 url: mailto:varactor@yahoo.com
-username: varectra@yahoo.com
+username: varactor@yahoo.com
 symbol: ↗
 order: 4
 locale: ru
