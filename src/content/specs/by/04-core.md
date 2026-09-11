@@ -1,5 +1,5 @@
 ---
-title: CORE
+title: ЯДРО
 order: 4
 x: 50
 y: 42
