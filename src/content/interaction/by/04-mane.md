@@ -1,7 +1,7 @@
 ---
 title: КАНТАКТ З ПОЎСЦЮ
 state: СПАЧАТКУ СПЫТАЙ
-description: Fluff access is usually negotiable; pulling never is.
+description: Доступ да поўсцi звычайна з'яўляецца прадметам перамоваў. Цягнуць - ніколі
 severity: warning
 order: 4
 ---
