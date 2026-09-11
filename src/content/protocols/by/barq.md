@@ -4,5 +4,5 @@ label: nearby nodes
 url: https://barq.app/
 username: varectra
 symbol: ↗
-order: 3
+order: 4
 ---
