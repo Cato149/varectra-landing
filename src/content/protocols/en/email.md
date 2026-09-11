@@ -1,7 +1,7 @@
 ---
 platform: Email
 label: mailbox
-url: mailto:varectra@yahoo.com
+url: mailto:varactor@yahoo.com
 username: varectra@yahoo.com
 symbol: ↗
 order: 4
