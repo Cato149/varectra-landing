@@ -1,7 +1,7 @@
 ---
 title: 2Пcon / Sillycon
 date: 2026-09-10
-type: -> SOON | CONVENTION
+type: CONVENTION
 city: Kaluga region
 summary: ''
 ---
